@@ -39,7 +39,10 @@ const CategoriasComponent = () => {
                                 </div>
                                 <div className="w-full h-[160px] flex flex-col justify-around">
                                     <h1 className="text-sm line-clamp-2">{item.title}</h1>
-                                    <p className="text-3xl">{formatter.format(item.price)}</p>
+                                    <div>
+                                        <p className="text-3xl">{formatter.format(item.price)}</p>
+                                        <p className="text-sm">en {item.installments.quantity}x {formatter.format(item.installments.amount)}</p>
+                                    </div>
                                 </div>
                             </SwiperSlide>
                         ))}
