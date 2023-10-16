@@ -4,7 +4,7 @@ import search from "../assets/search.svg"
 import location from "../assets/location.png"
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
 import React, { useEffect, useState } from "react"
-import { getCategorias, getCategoriasId } from "../redux/slices/categoriasSlice"
+import { getCategorias, getCategoriasId, setNameCategoria } from "../redux/slices/categoriasSlice"
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -26,10 +26,11 @@ export default function HeaderPage() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const mostrarCategoria = (id: string) => {
+    const mostrarCategoria = (id: string , name: string) => {
         setAnchorEl(null);
         // enviar id
         dispatch(getCategoriasId(id))
+        dispatch(setNameCategoria(name))
     };
 
 
@@ -76,7 +77,7 @@ export default function HeaderPage() {
               }}
           >
               { categorias.slice(0, 20).map( categoria => (
-                  <MenuItem key={categoria.id} onClick={() => mostrarCategoria(categoria.id)}>{categoria.name}</MenuItem>
+                  <MenuItem key={categoria.id} onClick={() => mostrarCategoria(categoria.id, categoria.name)}>{categoria.name}</MenuItem>
               ))}
           </Menu>
           <li className="cursor-pointer">OFERTAS</li>

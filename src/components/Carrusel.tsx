@@ -22,16 +22,16 @@ const CarruselComponent = () => {
             }}
             navigation={true}
             modules={[Autoplay, Navigation, Pagination]}
-            speed={2000}
+            speed={1000}
             loop={true}
         > 
-            <SwiperSlide>
+            <SwiperSlide className='cursor-pointer'>
                 <img className='mx-auto' src={imagen1} alt="bblogo" />
             </SwiperSlide>
-            <SwiperSlide>
+            <SwiperSlide className='cursor-pointer'>
                 <img className='mx-auto' src={imagen2} alt="gotlogo" />
             </SwiperSlide>
-            <SwiperSlide>
+            <SwiperSlide className='cursor-pointer'>
                 <img className='mx-auto' src={imagen3} alt="blogo" />
             </SwiperSlide>
         </Swiper>

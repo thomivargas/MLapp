@@ -10,11 +10,12 @@ interface Data {
 }
 
 interface CategoriaState {
-    msg: string,
-    error: string | undefined,
-    status: string,
-    data: Data[],
-    dataId: Result[]
+    msg: string;
+    error: string | undefined;
+    status: string;
+    data: Data[];
+    dataId: Result[];
+    nameCategoria: string;
 }
 
 const initialState: CategoriaState = {
@@ -22,7 +23,8 @@ const initialState: CategoriaState = {
     error: '',
     status: '',
     data: [],
-    dataId: []
+    dataId: [],
+    nameCategoria: ''
 }
 
 export const getCategorias = createAsyncThunk('categorias/getCategorias', async () => {
@@ -38,7 +40,11 @@ export const getCategoriasId = createAsyncThunk('categorias/getCategoriasId', as
 export const categoriasSlice = createSlice({
     name: 'categorias',
     initialState,
-    reducers: {},
+    reducers: {
+        setNameCategoria: (state, action) => {
+            state.nameCategoria = action.payload
+        }
+    },
     extraReducers: (builder) => {
         //get Categorias
         builder
@@ -67,5 +73,7 @@ export const categoriasSlice = createSlice({
             })
     }
 })
+
+export const { setNameCategoria } = categoriasSlice.actions
 
 export default categoriasSlice.reducer

@@ -1,20 +1,17 @@
 import CarruselComponent from "../components/Carrusel";
+import CategoriasComponent from "../components/Categorias";
 import HeaderPage from "../components/Header";
-import { useAppSelector } from "../redux/hooks";
+import TarjetasComponent from "../components/TarjetasComponent";
 
 const HomePage = () => {
-    const categorias = useAppSelector(state => state.categorias.dataId)
+
     return ( 
         <>
             <HeaderPage/>
-            <main>
+            <main className="pb-24">
                 <CarruselComponent/>
-                { categorias.length > 0 && categorias.map( item => (
-                    <div key={item.id}>
-                        <img src={item.thumbnail} alt="nashe" />
-                        <h1>{item.title}</h1>
-                    </div>
-                ))}
+                <TarjetasComponent/>
+                <CategoriasComponent/>
             </main>
         </>
      );

@@ -3,7 +3,7 @@ import { categoriasSlice } from './redux/slices'
 
 export const store = configureStore({
   reducer: {
-    categorias: categoriasSlice.reducer
+    categorias: categoriasSlice.reducer,
   },
 })
 
