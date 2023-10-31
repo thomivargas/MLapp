@@ -12,7 +12,9 @@ const ItemsBusquedaPage = () => {
     const busquedaItem = useAppSelector(state => state.busqueda)
 
     useEffect(() => {
-        dispatch(getBusqueda(busqueda))
+        if (busqueda) {
+            dispatch(getBusqueda(busqueda));
+        }
     }, [busqueda])  
 
     return ( 

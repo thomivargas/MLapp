@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { GetItem } from '../../utils/LocalStorage';
 
 interface CartAddState {
-    id: string;
+    id: string | number;
     name: string;
     image: string;
     price: number;

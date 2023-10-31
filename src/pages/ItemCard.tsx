@@ -24,7 +24,9 @@ const ItemCard = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch(getItem(item))
+        if(item){
+            dispatch(getItem(item))
+        }
     }, [])
 
     const cambiarImagen = (url: string, id: string) => {
