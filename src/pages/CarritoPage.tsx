@@ -36,7 +36,7 @@ const Carrito = () => {
     return ( 
         <section className="w-full mt-10">
             {carrito.length > 0 ? (
-                <div className="w-[62%] mx-auto flex gap-4 items-start">
+                <div className="w-[80%] xl:w-[65%] mx-auto flex gap-4 items-start">
                     <div className="w-full flex flex-col gap-10">
                         {carrito.map(item => (
                             <div key={item.id} className="bg-white shadow-md p-5 rounded-lg flex flex-col gap-5 px-10">

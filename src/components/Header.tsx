@@ -50,7 +50,7 @@ export default function HeaderPage() {
   return (
     <>
       <header className="w-full h-[100px] bg-[#FFF159] flex flex-col justify-between py-2">
-        <div className="w-[70%] 2xl:w-[62%] flex mx-auto justify-between">
+        <div className="w-[70%] 2xl:w-[65%] flex mx-auto justify-between">
           <Link to='/'>
             <img src={logo} width={180} height={180} alt=""/>
           </Link>
