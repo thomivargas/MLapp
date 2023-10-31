@@ -13,9 +13,7 @@ const ItemsBusquedaPage = () => {
 
     useEffect(() => {
         dispatch(getBusqueda(busqueda))
-    }, [busqueda])    
-
-    console.log(busquedaItem)
+    }, [busqueda])  
 
     return ( 
     <section className="w-[62%] pt-5 mx-auto flex items-center justify-between">
@@ -62,9 +60,6 @@ const ItemsBusquedaPage = () => {
                         </select>
                     </div>
                     <div className="grid grid-cols-3 gap-4">
-                        
-                                {/* ////////////////////////////////////////// */}
-
                         {busquedaItem?.data?.results?.map( item => (
                             <Link to={`/${busquedaItem?.data?.query}/${item.id}`} key={item.id} className="bg-white shadow rounded p-2 cursor-pointer hover:shadow-xl">
                                 <div className="w-full border-b border-gray-300">

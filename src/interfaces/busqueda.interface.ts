@@ -1,6 +1,6 @@
 export interface Busqueda {
     msg:    string;
-    error:  string | undefined;
+    error:  any;
     status: string;
     data:   Data;
 }
