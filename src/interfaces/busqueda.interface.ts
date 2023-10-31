@@ -1,6 +1,14 @@
+export interface Busqueda {
+    msg:    string;
+    error:  string | undefined;
+    status: string;
+    data:   Data;
+}
+
 export interface Data {
     site_id:                   SiteID;
     country_default_time_zone: string;
+    query:                     string;
     paging:                    Paging;
     results:                   Result[];
     sort:                      Sort;
@@ -53,42 +61,43 @@ export interface Paging {
 }
 
 export interface Result {
-    id:                   string;
-    title:                string;
-    condition:            Condition;
-    thumbnail_id:         string;
-    catalog_product_id:   null | string;
-    listing_type_id:      ListingTypeID;
-    permalink:            string;
-    buying_mode:          BuyingMode;
-    site_id:              SiteID;
-    category_id:          string;
-    domain_id:            string;
-    thumbnail:            string;
-    currency_id:          CurrencyID;
-    order_backend:        number;
-    price:                number;
-    original_price:       number | bigint;
-    sale_price:           null;
-    sold_quantity:        number;
-    available_quantity:   number;
-    official_store_id:    number | null;
-    use_thumbnail_id:     boolean;
-    accepts_mercadopago:  boolean;
-    tags:                 ResultTag[];
-    shipping:             Shipping;
-    stop_time:            Date;
-    seller:               Seller;
-    seller_address:       SellerAddress;
-    address:              Address;
-    attributes:           Attribute[];
-    installments:         Installments;
-    winner_item_id:       null;
-    catalog_listing:      boolean;
-    discounts:            null;
-    promotions:           any[];
-    inventory_id:         null | string;
-    official_store_name?: string;
+    id:                    string;
+    title:                 string;
+    condition:             Condition;
+    thumbnail_id:          string;
+    catalog_product_id:    string;
+    listing_type_id:       ListingTypeID;
+    permalink:             string;
+    buying_mode:           BuyingMode;
+    site_id:               SiteID;
+    category_id:           string;
+    domain_id:             DomainID;
+    thumbnail:             string;
+    currency_id:           CurrencyID;
+    order_backend:         number;
+    price:                 number;
+    original_price:        number | bigint;
+    sale_price:            null;
+    sold_quantity:         number;
+    available_quantity:    number;
+    official_store_id:     number | null;
+    official_store_name?:  string;
+    use_thumbnail_id:      boolean;
+    accepts_mercadopago:   boolean;
+    tags:                  string[];
+    shipping:              Shipping;
+    stop_time:             Date;
+    seller:                Seller;
+    seller_address:        SellerAddress;
+    address:               Address;
+    attributes:            Attribute[];
+    installments:          Installments;
+    winner_item_id:        null;
+    catalog_listing:       boolean;
+    discounts:             null;
+    promotions:            any[];
+    differential_pricing?: DifferentialPricing;
+    inventory_id:          null | string;
 }
 
 export interface Address {
@@ -101,18 +110,22 @@ export interface Address {
 export enum StateID {
     ArB = "AR-B",
     ArC = "AR-C",
+    ArE = "AR-E",
+    ArX = "AR-X",
 }
 
 export enum StateName {
     BuenosAires = "Buenos Aires",
     CapitalFederal = "Capital Federal",
+    Córdoba = "Córdoba",
+    EntreRíos = "Entre Ríos",
 }
 
 export interface Attribute {
     id:                   ID;
     name:                 Name;
     value_id:             null | string;
-    value_name:           string;
+    value_name:           null | string;
     attribute_group_id:   AttributeGroupID;
     attribute_group_name: AttributeGroupName;
     value_struct:         Struct | null;
@@ -122,51 +135,33 @@ export interface Attribute {
 }
 
 export enum AttributeGroupID {
-    Empty = "",
     Others = "OTHERS",
 }
 
 export enum AttributeGroupName {
-    Empty = "",
     Otros = "Otros",
 }
 
 export enum ID {
+    AlphanumericModel = "ALPHANUMERIC_MODEL",
     Brand = "BRAND",
+    DetailedModel = "DETAILED_MODEL",
     ItemCondition = "ITEM_CONDITION",
     Line = "LINE",
     Model = "MODEL",
-    NetVolume = "NET_VOLUME",
-    NetWeight = "NET_WEIGHT",
     PackageLength = "PACKAGE_LENGTH",
     PackageWeight = "PACKAGE_WEIGHT",
-    PacksNumber = "PACKS_NUMBER",
-    ProductConservation = "PRODUCT_CONSERVATION",
-    SaleCondition = "SALE_CONDITION",
-    SaleFormat = "SALE_FORMAT",
-    UnitVolume = "UNIT_VOLUME",
-    UnitWeight = "UNIT_WEIGHT",
-    UnitsPerPack = "UNITS_PER_PACK",
-    UnitsPerPackage = "UNITS_PER_PACKAGE",
 }
 
 export enum Name {
-    CantidadDePacks = "Cantidad de packs",
-    CondiciónDeVenta = "Condición de venta",
     CondiciónDelÍtem = "Condición del ítem",
-    ConservaciónDelProducto = "Conservación del producto",
-    FormatoDeVenta = "Formato de venta",
     LargoDelPaquete = "Largo del paquete",
     Línea = "Línea",
     Marca = "Marca",
     Modelo = "Modelo",
-    PesoDeLaUnidad = "Peso de la unidad",
+    ModeloAlfanumérico = "Modelo alfanumérico",
+    ModeloDetallado = "Modelo detallado",
     PesoDelPaquete = "Peso del paquete",
-    PesoNeto = "Peso neto",
-    UnidadesPorEnvase = "Unidades por envase",
-    UnidadesPorPack = "Unidades por pack",
-    VolumenDeLaUnidad = "Volumen de la unidad",
-    VolumenNeto = "Volumen neto",
 }
 
 export interface Struct {
@@ -176,24 +171,18 @@ export interface Struct {
 
 export enum Unit {
     CM = "cm",
-    Cc = "cc",
     G = "g",
-    Kg = "kg",
-    L = "L",
-    ML = "mL",
 }
 
 export enum ValueType {
-    Integer = "integer",
     List = "list",
-    Number = "number",
     NumberUnit = "number_unit",
     String = "string",
 }
 
 export interface AttributeValue {
     id:     null | string;
-    name:   string;
+    name:   null | string;
     struct: Struct | null;
     source: number;
 }
@@ -210,6 +199,14 @@ export enum CurrencyID {
     Ars = "ARS",
 }
 
+export interface DifferentialPricing {
+    id: number;
+}
+
+export enum DomainID {
+    MlaComputerMonitors = "MLA-COMPUTER_MONITORS",
+}
+
 export interface Installments {
     quantity:    number;
     amount:      number;
@@ -218,6 +215,7 @@ export interface Installments {
 }
 
 export enum ListingTypeID {
+    GoldPro = "gold_pro",
     GoldSpecial = "gold_special",
 }
 
@@ -248,9 +246,9 @@ export interface Eshop {
 }
 
 export interface EshopRubro {
-    id:          string;
     name:        string;
     category_id: string;
+    id:          string;
 }
 
 export enum SiteID {
@@ -259,12 +257,13 @@ export enum SiteID {
 
 export interface SellerReputation {
     level_id:            LevelID;
-    power_seller_status: PowerSellerStatus;
+    power_seller_status: PowerSellerStatus | null;
     transactions:        Transactions;
     metrics:             Metrics;
 }
 
 export enum LevelID {
+    The4_LightGreen = "4_light_green",
     The5_Green = "5_green",
 }
 
@@ -276,9 +275,15 @@ export interface Metrics {
 }
 
 export interface Cancellations {
-    period: CancellationsPeriod;
-    rate:   number;
-    value:  number;
+    period:    CancellationsPeriod;
+    rate:      number;
+    value:     number;
+    excluded?: Excluded;
+}
+
+export interface Excluded {
+    real_value: number;
+    real_rate:  number;
 }
 
 export enum CancellationsPeriod {
@@ -291,7 +296,9 @@ export interface Sales {
 }
 
 export enum PowerSellerStatus {
+    Gold = "gold",
     Platinum = "platinum",
+    Silver = "silver",
 }
 
 export interface Transactions {
@@ -314,7 +321,8 @@ export interface Ratings {
 
 export enum SellerTag {
     Brand = "brand",
-    CreditsPriority1 = "credits_priority_1",
+    CreditsOpenMarket = "credits_open_market",
+    CreditsPriority2 = "credits_priority_2",
     CreditsPriority4 = "credits_priority_4",
     CreditsProfile = "credits_profile",
     Developer = "developer",
@@ -342,13 +350,14 @@ export interface Shipping {
     free_shipping: boolean;
     logistic_type: LogisticType;
     mode:          Mode;
-    tags:          string[];
+    tags:          ShippingTag[];
     benefits:      null;
     promise:       null;
 }
 
 export enum LogisticType {
     CrossDocking = "cross_docking",
+    DropOff = "drop_off",
     Fulfillment = "fulfillment",
     XdDropOff = "xd_drop_off",
 }
@@ -357,18 +366,10 @@ export enum Mode {
     Me2 = "me2",
 }
 
-export enum ResultTag {
-    BestSellerCandidate = "best_seller_candidate",
-    BrandVerified = "brand_verified",
-    CartEligible = "cart_eligible",
-    CatalogBoost = "catalog_boost",
-    DealOfTheDay = "deal_of_the_day",
-    GoodQualityPicture = "good_quality_picture",
-    GoodQualityThumbnail = "good_quality_thumbnail",
-    ImmediatePayment = "immediate_payment",
-    MeliChoiceCandidate = "meli_choice_candidate",
-    ModerationPenalty = "moderation_penalty",
-    ShippingGuaranteed = "shipping_guaranteed",
-    StandardPriceByChannel = "standard_price_by_channel",
-    SupermarketEligible = "supermarket_eligible",
+export enum ShippingTag {
+    FbmInProcess = "fbm_in_process",
+    Fulfillment = "fulfillment",
+    MandatoryFreeShipping = "mandatory_free_shipping",
+    SelfServiceIn = "self_service_in",
+    SelfServiceOut = "self_service_out",
 }

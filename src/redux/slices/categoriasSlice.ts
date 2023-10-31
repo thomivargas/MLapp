@@ -24,7 +24,7 @@ const initialState: CategoriaState = {
     status: '',
     data: [],
     dataId: [],
-    nameCategoria: ''
+    nameCategoria: 'Celulares y Teléfonos'
 }
 
 export const getCategorias = createAsyncThunk('categorias/getCategorias', async () => {
