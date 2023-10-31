@@ -11,7 +11,7 @@ export const getItem = createAsyncThunk('item/getItem', async (id?: string) => {
 
 interface itemState {
     msg: string;
-    error: string | undefined;
+    error: any;
     status: string;
     data: Data[];
 }

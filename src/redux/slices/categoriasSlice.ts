@@ -11,7 +11,7 @@ interface Data {
 
 interface CategoriaState {
     msg: string;
-    error: string | undefined;
+    error: any;
     status: string;
     data: Data[];
     dataId: Result[];
