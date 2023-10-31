@@ -49,7 +49,7 @@ const Carrito = () => {
                                         <div>
                                             <h1 className="text-sm">{item.name}</h1>
                                             <ul className="text-xs text-sky-600 flex gap-5 mt-2">
-                                                <li onClick={() => eliminarCarrito(item.id)} className="cursor-pointer">Eliminar</li>
+                                                <li onClick={() => eliminarCarrito(item.id.toString())} className="cursor-pointer">Eliminar</li>
                                                 <li className="cursor-pointer">Guardar</li>
                                                 <li className="cursor-pointer">Comprar ahora</li>
                                             </ul>
